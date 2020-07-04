@@ -2,7 +2,6 @@ extends:
   - stylelint-config-standard
   - stylelint-config-recess-order
   - stylelint-config-styled-components
-  - stylelint-rscss/config
 processors:
   - stylelint-processor-styled-components
 plugins:
@@ -16,11 +15,3 @@ rules:
     - ignorePseudoClasses: [global]
   selector-pseudo-element-no-unknown: null
   at-rule-no-unknown: null
-  scss/at-rule-no-unknown: true
-  rscss/class-format:
-    - true
-    - component: ^[a-z0-9]+[A-Z][a-zA-Z0-9]+$
-      element: ^[a-z0-9]+$
-      helper: ^_[a-zA-Z0-9]+$
-      variant: ^[A-Z][a-zA-Z0-9]+$
-      maxDepth: 3

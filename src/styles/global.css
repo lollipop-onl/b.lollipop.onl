@@ -2,6 +2,8 @@
 :root {
   /* 色 */
   --primary-color: #ebb128;
+  --primary-text-color: #fff;
+  --secondary-text-color: #000;
 
   /* フォント */
   --primary-font-families: sans-serif;
@@ -21,4 +23,5 @@ button,
 input,
 textarea {
   font-family: var(--primary-font-families);
+  -webkit-font-smoothing: antialiased;
 }

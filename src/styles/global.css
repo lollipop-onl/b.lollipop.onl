@@ -1,12 +1,19 @@
 /* グローバルな定数定義 */
 :root {
+  /* 色 */
   --primary-color: #ebb128;
+
+  /* フォント */
   --primary-font-families: sans-serif;
 }
 
-/** グローバルなスタイル定義 */
-body {
+/* グローバルなスタイル定義 */
+html {
   font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
 }
 
 body,

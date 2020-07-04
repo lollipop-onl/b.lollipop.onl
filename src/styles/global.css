@@ -6,7 +6,8 @@
   --secondary-text-color: #000;
 
   /* フォント */
-  --primary-font-families: sans-serif;
+  --primary-font-family: sans-serif;
+  --accent-font-familt: Quicksand, var(--primary-font-family);
 }
 
 /* グローバルなスタイル定義 */
@@ -22,6 +23,6 @@ body,
 button,
 input,
 textarea {
-  font-family: var(--primary-font-families);
+  font-family: var(--primary-font-family);
   -webkit-font-smoothing: antialiased;
 }

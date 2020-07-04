@@ -1,18 +1,19 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Logo } from '~/components/atoms/Logo';
 import * as C from '~/const';
-import { containerMixin } from '~/components/mixins';
+import { containerMixin, logoMixin } from '~/components/mixins';
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-const GlobalHeaderComponent: FC<Props> = () => (
-  <Foundation>
+const GlobalHeaderComponent: FC<Props> = ({ className }) => (
+  <Foundation className={className}>
     <Container>
       <Link href={C.PAGES.TOP} prefetch passHref>
         <LogoLink>
-          <Logo />
+          lollipop.onl
         </LogoLink>
       </Link>
     </Container>
@@ -24,7 +25,7 @@ const Foundation = styled.header`
 `;
 
 const Container = styled.div`
-  ${containerMixin};
+  ${containerMixin({ width: C.$containerWideWidth })};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,6 +33,7 @@ const Container = styled.div`
 `;
 
 const LogoLink = styled.a`
+  ${logoMixin};
   color: var(--primary-text-color);
   text-decoration: none;
 `;

@@ -10,6 +10,7 @@ rules:
   no-continue: 'off'
   no-nested-ternary: 'off'
   no-param-reassign: 'off'
+  '@typescript-eslint/naming-convention': 'off'
   '@typescript-eslint/no-unused-vars': warn
   '@typescript-eslint/type-annotation-spacing':
     - error

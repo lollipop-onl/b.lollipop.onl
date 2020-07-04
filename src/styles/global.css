@@ -1,0 +1,17 @@
+/* グローバルな定数定義 */
+:root {
+  --primary-color: #ebb128;
+  --primary-font-families: sans-serif;
+}
+
+/** グローバルなスタイル定義 */
+body {
+  font-size: 62.5%;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--primary-font-families);
+}

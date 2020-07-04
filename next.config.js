@@ -9,5 +9,5 @@ module.exports = {
     return {
       '/404.html': { page: '/404' },
     }
-  }
+  },
 };

@@ -25,3 +25,53 @@ export type FetchContentQuery = {
   /** 参照コンテンツを取得する階層の深さを指定 */
   depth?: number;
 };
+
+/** コンテンツのモデルを定義する */
+export type DefineContentModel<T extends Record<string, any>> = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+} & T;
+
+/** リストのモデルを定義する */
+export type DefineListModel<T> = {
+  contents: T[];
+};
+
+/** ブログポスト */
+export type BlogPost = DefineContentModel<{
+  /** タイトル */
+  title: string;
+  /** アイキャッチ画像URL */
+  eyecatchUrl?: string;
+  /** カテゴリ */
+  category: any;
+  /** タグ */
+  tags: any[];
+  /** 本文 */
+  content: string;
+  /** 関連記事 */
+  relatedPosts: BlogPost[];
+}>;
+
+/** ブログポストリスト */
+export type BlogPostList = DefineListModel<BlogPost>;
+
+/** タグ */
+export type Tag = DefineContentModel<{
+  /** タグ名 */
+  name: string;
+}>;
+
+/** タグリスト */
+export type TagList = DefineListModel<Tag>;
+
+/** カテゴリ */
+export type Category = DefineContentModel<{
+  /** カテゴリ名 */
+  name: string;
+}>;
+
+/** カテゴリリスト */
+export type CategoryList = DefineListModel<Category>;

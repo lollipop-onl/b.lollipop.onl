@@ -21,15 +21,12 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "types": [
-      "next",
-      "next/types/global"
-    ]
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ]

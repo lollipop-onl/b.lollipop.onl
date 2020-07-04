@@ -1,0 +1,10 @@
+{
+  "name": "b.lollipop.onl",
+  "version": "0.0.0",
+  "description": "The website of lollipop.onl blog",
+  "main": "null",
+  "repository": "https://github.com/lollipop-onl/b.lollipop.onl.git",
+  "author": "lollipop-onl <lollipop@simochee.net>",
+  "license": "MIT",
+  "private": true
+}

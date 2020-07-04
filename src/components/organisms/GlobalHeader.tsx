@@ -11,7 +11,7 @@ type Props = {
 const GlobalHeaderComponent: FC<Props> = ({ className }) => (
   <Foundation className={className}>
     <Container>
-      <Link href={C.PAGES.TOP} prefetch passHref>
+      <Link href={C.PAGES.TOP} passHref>
         <LogoLink>
           lollipop.onl
         </LogoLink>

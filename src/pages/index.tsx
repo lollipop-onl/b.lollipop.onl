@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
-import ky from 'ky-universal';
 import { Layout } from '~/components/templates/Layout';
 import { fetchPostList } from '~/api';
 

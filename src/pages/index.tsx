@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
 import ky from 'ky-universal';
 import { Layout } from '~/components/templates/Layout';
+import { fetchPostList } from '~/api';
 
 type Props = {
   posts: any[];
@@ -10,11 +11,7 @@ type Props = {
 export const config = { amp: true };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const results: any = await ky.get('https://lollipop.microcms.io/api/v1/posts', {
-    headers: {
-      'X-API-KEY': process.env.microCMS_API_KEY,
-    },
-  }).json();
+  const results = await fetchPostList();
 
   return {
     props: {
@@ -25,6 +22,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 export const IndexPage: FC<Props> = ({ posts = [] }) => (
   <Layout title="b.lollipop.onl">
+    <pre>{JSON.stringify(posts, null, '  ')}</pre>
   </Layout>
 );
 

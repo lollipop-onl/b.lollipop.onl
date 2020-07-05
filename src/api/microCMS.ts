@@ -10,7 +10,7 @@ const microCMS_BASE_URL = `https://${microCMS_SERVICE_ID}.microcms.io`;
  * @param path リクエストパス
  * @param query リクエストクエリ
  */
-export const fetchMicroCMSData = async <T extends undefined>(
+export const fetchMicroCMSData = async <T extends unknown>(
   path: string,
   query?: FetchListQuery | FetchContentQuery,
 ): Promise<T> => ky.get(urlJoin(microCMS_BASE_URL, path), {

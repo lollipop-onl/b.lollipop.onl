@@ -33,7 +33,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const PostContentPage: FC<Props> = ({ content }) => (
-  <Layout title={content.title}>
+  <Layout title={content.title} description={content.content}>
+    <h1>{content.title}</h1>
     <pre>{JSON.stringify(content, null, '  ')}</pre>
   </Layout>
 );

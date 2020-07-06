@@ -39,7 +39,6 @@ const LayoutComponent: FC<Props> = ({
       </Head>
       <Header />
       <Container>
-        <pre>{asPath}</pre>
         {children}
       </Container>
     </>

@@ -44,7 +44,7 @@ export type BlogPost = DefineContentModel<{
   /** タイトル */
   title: string;
   /** アイキャッチ画像URL */
-  eyecatchUrl?: string;
+  thumbnailUrl?: string;
   /** カテゴリ */
   category: any;
   /** タグ */

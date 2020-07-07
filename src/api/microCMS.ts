@@ -13,13 +13,9 @@ const microCMS_BASE_URL = `https://${microCMS_SERVICE_ID}.microcms.io`;
 export const fetchMicroCMSData = async <T extends unknown>(
   path: string,
   query?: FetchListQuery | FetchContentQuery,
-): Promise<T> => {
-  const data = await ky.get(urlJoin(microCMS_BASE_URL, path), {
-    searchParams: query,
-    headers: {
-      'X-API-KEY': process.env.microCMS_API_KEY,
-    },
-  }).json<T>();
-
-  return data;
-};
+): Promise<T> => ky.get(urlJoin(microCMS_BASE_URL, path), {
+  searchParams: query,
+  headers: {
+    'X-API-KEY': process.env.microCMS_API_KEY,
+  },
+}).json<T>();

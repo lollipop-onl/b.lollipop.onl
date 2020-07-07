@@ -7,7 +7,7 @@ import removeMarkdown from 'remove-markdown';
  */
 export const usePageDescription = (
   description?: string,
-  maxTextLength = 100,
+  maxTextLength = 300,
 ): string => {
   const plainText = removeMarkdown(description);
 

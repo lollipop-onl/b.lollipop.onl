@@ -14,12 +14,15 @@ type Props = {
   description?: string;
   /** og:type */
   ogType?: 'website' | 'blog' | 'article';
+  /** og:image */
+  ogImage?: string;
 };
 
 const LayoutComponent: FC<Props> = ({
   title,
   description,
   ogType = 'blog',
+  ogImage,
   children,
 }) => {
   const { asPath } = useRouter();
@@ -36,6 +39,7 @@ const LayoutComponent: FC<Props> = ({
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:site_name" content="b.lollipop.onl" />
+        <meta property="og:image" content={ogImage} />
       </Head>
       <Header />
       <Container>

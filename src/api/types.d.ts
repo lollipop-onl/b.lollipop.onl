@@ -75,3 +75,15 @@ export type Category = DefineContentModel<{
 
 /** カテゴリリスト */
 export type CategoryList = DefineListModel<Category>;
+
+/** Gyazo oEmbedのデータ */
+export type GyazoOEmbed = {
+  version: string;
+  type: string;
+  provider_name: string;
+  provider_url: string;
+  url: string;
+  width: number;
+  height: number;
+  scale: number;
+};

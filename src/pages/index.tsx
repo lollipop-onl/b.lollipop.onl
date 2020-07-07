@@ -27,7 +27,11 @@ export const IndexPage: FC<Props> = ({ posts = [] }) => (
     <ol>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>{post.title}</Link>
+          <Link href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>
+            <a>
+              {post.title}
+            </a>
+          </Link>
         </li>
       ))}
     </ol>

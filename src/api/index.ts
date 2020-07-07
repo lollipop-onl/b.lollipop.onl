@@ -10,7 +10,7 @@ import { url } from '~/utils';
  */
 export const fetchPostList = async (query?: FetchListQuery): Promise<BlogPostList> => fetchMicroCMSData<BlogPostList>('/api/v1/posts', query);
 
-export const fetchAllPostIdList = async (query?: Omit<FetchListQuery, 'offset' | 'limit'>): Promise<BlogPost[]> => {
+export const fetchAllPostList = async (query?: Omit<FetchListQuery, 'offset' | 'limit'>): Promise<BlogPost[]> => {
   let contentList: BlogPost[] = [];
   const page = 0;
 

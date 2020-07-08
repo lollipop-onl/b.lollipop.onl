@@ -6,8 +6,9 @@
   --secondary-text-color: #000;
 
   /* フォント */
-  --primary-font-family: sans-serif;
-  --accent-font-familt: Quicksand, var(--primary-font-family);
+  --primary-font-family: 'Noto Sans JP', sans-serif;
+  --accent-font-family: Quicksand, var(--primary-font-family);
+  --monospace-font-family: 'DM Mono', 'Noto Sans JP', monospace;
 }
 
 /* グローバルなスタイル定義 */

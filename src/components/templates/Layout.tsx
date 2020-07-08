@@ -1,11 +1,35 @@
-import path from 'path';
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { GlobalHeader } from '~/components/organisms/GlobalHeader';
 import { containerMixin } from '~/components/mixins';
 import { usePageDescription, usePageTitle, usePageUrl } from '~/hooks';
+
+const Layout = styled.div`
+  display: flex;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+const LayoutMain = styled.div`
+  flex-grow: 1;
+`;
+
+const LayoutSidebar = styled.div`
+  flex-shrink: 0;
+  width: 320px;
+  margin-left: 24px;
+
+  @media (max-width: 800px) {
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 24px;
+    margin-left: auto;
+  }
+`;
 
 type Props = {
   /** ページタイトル */
@@ -16,6 +40,8 @@ type Props = {
   ogType?: 'website' | 'blog' | 'article';
   /** og:image */
   ogImage?: string;
+  /** サイドバー */
+  sidebar?: ReactNode;
 };
 
 const LayoutComponent: FC<Props> = ({
@@ -23,6 +49,7 @@ const LayoutComponent: FC<Props> = ({
   description,
   ogType = 'blog',
   ogImage,
+  sidebar,
   children,
 }) => {
   const { asPath } = useRouter();
@@ -43,7 +70,16 @@ const LayoutComponent: FC<Props> = ({
       </Head>
       <Header />
       <Container>
-        {children}
+        <Layout>
+          <LayoutMain>
+            {children}
+          </LayoutMain>
+          { sidebar ? (
+            <LayoutSidebar>
+              {sidebar}
+            </LayoutSidebar>
+          ) : null }
+        </Layout>
       </Container>
     </>
   );

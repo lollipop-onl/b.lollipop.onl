@@ -35,7 +35,7 @@ const PostSidebarComponent: FC<Props> = ({ content }) => {
     <>
       <PostSidebarAdsense />
       <PostSidebarSticky>
-        <PostSidebarToC headings={headings} />
+        { headings.length > 0 ? <PostSidebarToC headings={headings} /> : null }
       </PostSidebarSticky>
     </>
   );

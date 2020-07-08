@@ -2,13 +2,6 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { slugify } from '~/utils';
 
-const PostSidebarToCList = styled.ol`
-
-`;
-
-const PostSidebarToCListItem = styled.li`
-`;
-
 const PostSidebarToCLink = styled.a`
   display: inline-block;
   padding: 4px 0;
@@ -40,24 +33,24 @@ type Props = {
 };
 
 const PostSidebarToCComponent: FC<Props> = ({ headings }) => (
-  <PostSidebarToCList>
+  <ul>
     { headings.map((heading) => {
       const matches = /^#+/.exec(heading);
       const level = matches ? matches[0].length : 0;
       const text = heading.replace(/^#+\s*/, '');
 
       return (
-        <PostSidebarToCListItem>
+        <li key={heading}>
           <PostSidebarToCLink
             href={`#${slugify(heading)}`}
             className="tocLink"
             data-hash={'#'.repeat(level)}
           >{text}
           </PostSidebarToCLink>
-        </PostSidebarToCListItem>
+        </li>
       );
     })}
-  </PostSidebarToCList>
+  </ul>
 );
 
 export { PostSidebarToCComponent as PostSidebarToC };

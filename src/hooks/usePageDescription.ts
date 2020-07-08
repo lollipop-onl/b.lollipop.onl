@@ -9,7 +9,7 @@ export const usePageDescription = (
   description?: string,
   maxTextLength = 300,
 ): string => {
-  const plainText = removeMarkdown(description);
+  const plainText = removeMarkdown(description || '');
 
   return plainText.slice(0, maxTextLength);
 };

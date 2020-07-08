@@ -1,4 +1,5 @@
 import markdownIt from 'markdown-it';
+import markdownItAnchor from 'markdown-it-anchor';
 import { gyazo, pickGyazoUrl } from './gyazo';
 import { highlight } from './highlight';
 import { youtube } from './youtube';
@@ -8,6 +9,7 @@ const md = markdownIt({
   breaks: true,
 });
 
+md.use(markdownItAnchor, { permalink: true });
 md.use(gyazo);
 md.use(youtube);
 

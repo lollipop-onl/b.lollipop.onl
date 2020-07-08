@@ -28,3 +28,4 @@ const markdown = async (source: string): Promise<string> => {
 };
 
 export { markdown };
+export * from './slugify';

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout } from '~/components/templates/Layout';
-import { PostContent } from '~/components/atoms/PostContent';
 import { PostSection } from '~/components/organisms/PostSection';
+import { PostSidebar } from '~/components/organisms/PostSidebar';
 import * as C from '~/const';
 import { fetchAllPostList, fetchPostContent } from '~/api';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
@@ -64,7 +64,7 @@ export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }
     description={post.content}
     ogType="article"
     ogImage={post.thumbnailUrl}
-    sidebar={<div style={{ background: '#f00' }}>Hoo bar.</div>}
+    sidebar={<PostSidebar content={post.content} />}
   >
     <PostSection
       post={post}

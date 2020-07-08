@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 declare namespace JSX {
   /** @see https://amp.dev/ja/documentation/guides-and-tutorials/learn/common_attributes/ */
   type CommonAttributes = {
@@ -11,6 +13,15 @@ declare namespace JSX {
     sizes?: string;
     width?: string | number;
     height?: string | number;
+  };
+
+  /** @see https://amp.dev/documentation/components/amp-script */
+  type AmpScript = CommonAttributes & {
+    src?: string;
+    script?: string;
+    sandbox?: 'allow-forms';
+    'max-age'?: string;
+    children?: ReactNode;
   };
 
   /** @see https://amp.dev/ja/documentation/components/amp-img/ */
@@ -41,6 +52,7 @@ type AmpYoutube = CommonAttributes & {
 
 interface IntrinsicElements {
   'amp-img': AmpImg;
+  'amp-script': AmpScript;
   'amp-twitter': AmpTwitter;
   'amp-youtube': AmpYoutube;
 }

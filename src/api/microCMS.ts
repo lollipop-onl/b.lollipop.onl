@@ -14,8 +14,8 @@ export const fetchMicroCMSData = async <T extends unknown>(
   path: string,
   query?: FetchListQuery | FetchContentQuery,
 ): Promise<T> => ky.get(urlJoin(microCMS_BASE_URL, path), {
-  searchParams: query,
+  searchParams: query as Record<string, string>,
   headers: {
-    'X-API-KEY': process.env.microCMS_API_KEY,
+    'X-API-KEY': process.env.microCMS_API_KEY || '',
   },
 }).json<T>();

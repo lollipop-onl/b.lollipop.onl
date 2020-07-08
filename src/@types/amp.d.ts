@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-
 declare namespace JSX {
+  import { ReactNode } from 'react';
+
   /** @see https://amp.dev/ja/documentation/guides-and-tutorials/learn/common_attributes/ */
   type CommonAttributes = {
     fallback?: boolean;
@@ -32,28 +32,28 @@ declare namespace JSX {
     attribution?: string;
   };
 
-/** @see https://amp.dev/ja/documentation/components/amp-twitter */
-type AmpTwitter = CommonAttributes & {
-  'data-tweetid'?: string;
-  'data-momentid'?: string;
-  'data-timeline-source-type'?: string;
-  [key: string]: string;
-};
+  /** @see https://amp.dev/ja/documentation/components/amp-twitter */
+  type AmpTwitter = CommonAttributes & {
+    'data-tweetid'?: string;
+    'data-momentid'?: string;
+    'data-timeline-source-type'?: string;
+    [key: string]: string;
+  };
 
-/** @see https://amp.dev/ja/documentation/components/amp-youtube */
-type AmpYoutube = CommonAttributes & {
-  autoplay?: boolean;
-  'data-videoid'?: string;
-  'data-live-channelid'?: string;
-  dock?: boolean;
-  credentials?: 'omit' | 'include';
-  [key: string]: string;
-};
+  /** @see https://amp.dev/ja/documentation/components/amp-youtube */
+  type AmpYoutube = CommonAttributes & {
+    autoplay?: boolean;
+    'data-videoid'?: string;
+    'data-live-channelid'?: string;
+    dock?: boolean;
+    credentials?: 'omit' | 'include';
+    [key: string]: string;
+  };
 
-interface IntrinsicElements {
-  'amp-img': AmpImg;
-  'amp-script': AmpScript;
-  'amp-twitter': AmpTwitter;
-  'amp-youtube': AmpYoutube;
-}
+  interface IntrinsicElements {
+    'amp-img': AmpImg;
+    'amp-script': AmpScript;
+    'amp-twitter': AmpTwitter;
+    'amp-youtube': AmpYoutube;
+  }
 }

@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout } from '~/components/templates/Layout';
+import { PostContent } from '~/components/atoms/PostContent';
 import * as C from '~/const';
 import { fetchAllPostList, fetchPostContent } from '~/api';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
-import { url } from '~/utils';
+import { url, markdown } from '~/utils';
 import { fetchGyazoImageInfo } from '~/api/gyazo';
 
 type Props = {
@@ -23,13 +24,14 @@ type Props = {
 export const config = { amp: true };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const contentId = Array.isArray(params.contentId) ? params.contentId[0] : params.contentId;
-  const blogPost = await fetchPostContent(contentId);
+  const contentId = Array.isArray(params?.contentId) ? params?.contentId[0] : params?.contentId;
+  const blogPost = await fetchPostContent(contentId || '');
   const allBlogContentList = await fetchAllPostList({ fields: 'id,title' });
   const currentPostIndex = allBlogContentList.findIndex((content) => content.id === contentId);
   const previousBlogPost = allBlogContentList[currentPostIndex - 1];
   const nextBlogPost = allBlogContentList[currentPostIndex + 1];
-  const props: Props = { post: blogPost, contentHtml: blogPost.content };
+  const contentHtml = await markdown(blogPost.content);
+  const props: Props = { post: blogPost, contentHtml };
 
   if (previousBlogPost) {
     props.previousBlogPost = previousBlogPost;
@@ -62,13 +64,18 @@ export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }
     ogType="article"
     ogImage={post.thumbnailUrl}
   >
-    <amp-img
-      src={thumbnailImage.url}
-      width={thumbnailImage.width}
-      height={thumbnailImage.height}
-    />
+    { thumbnailImage ? (
+      <amp-img
+        src={thumbnailImage.url}
+        width={thumbnailImage.width}
+        height={thumbnailImage.height}
+      />
+    ) : null }
     <h1>{post.title}</h1>
-    <pre dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    <section>
+      <PostContent html={contentHtml} />
+    </section>
+
   </Layout>
 );
 

@@ -1,6 +1,11 @@
 import React from 'react';
-import Document from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import resetCssStyles from '!!raw-loader!reset-css/reset.css';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import globalStyles from '!!raw-loader!../styles/global.css';
@@ -24,6 +29,11 @@ class MyDocument extends Document {
             {initialProps.styles}
             <style
               dangerouslySetInnerHTML={{
+                __html: resetCssStyles,
+              }}
+            />
+            <style
+              dangerouslySetInnerHTML={{
                 __html: globalStyles,
               }}
             />
@@ -34,6 +44,21 @@ class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html lang="ja">
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
 

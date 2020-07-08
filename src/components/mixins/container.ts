@@ -7,7 +7,9 @@ type ContainerProps = {
 };
 
 export const containerMixin = ({ width = C.$containerWidth }: ContainerProps) => css`
+  box-sizing: border-box;
   width: 100%;
+  max-width: calc(${cssUnit(width)} + ${cssUnit(C.$containerMargin * 2)});
+  padding: 0 ${cssUnit(C.$containerMargin)};
   margin: 0 auto;
-  max-width: ${cssUnit(width)};
 `;

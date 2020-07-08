@@ -21,7 +21,27 @@ declare namespace JSX {
     attribution?: string;
   };
 
-  interface IntrinsicElements {
-    'amp-img': AmpImg;
-  }
+/** @see https://amp.dev/ja/documentation/components/amp-twitter */
+type AmpTwitter = CommonAttributes & {
+  'data-tweetid'?: string;
+  'data-momentid'?: string;
+  'data-timeline-source-type'?: string;
+  [key: string]: string;
+};
+
+/** @see https://amp.dev/ja/documentation/components/amp-youtube */
+type AmpYoutube = CommonAttributes & {
+  autoplay?: boolean;
+  'data-videoid'?: string;
+  'data-live-channelid'?: string;
+  dock?: boolean;
+  credentials?: 'omit' | 'include';
+  [key: string]: string;
+};
+
+interface IntrinsicElements {
+  'amp-img': AmpImg;
+  'amp-twitter': AmpTwitter;
+  'amp-youtube': AmpYoutube;
+}
 }

@@ -35,7 +35,6 @@ export const IndexPage: FC<Props> = ({ posts = [] }) => (
         </li>
       ))}
     </ol>
-    <pre>{JSON.stringify(posts, null, '  ')}</pre>
   </Layout>
 );
 

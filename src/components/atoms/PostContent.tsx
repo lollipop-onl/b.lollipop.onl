@@ -24,6 +24,22 @@ const PostContent = styled.div`
     border-radius: 4px;
   }
 
+  ul, ol {
+    margin: 0 0 16px 32px;
+
+    & > li:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+
+  ul {
+    list-style-type: square;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
   .codeBlock {
     @media (max-width: 800px) {
       width: calc(100% + ${cssUnit(C.$containerMargin * 2)});

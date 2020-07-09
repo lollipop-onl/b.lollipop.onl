@@ -50,8 +50,9 @@ const pageEmbedTokenizer: RenderRule = (
   }
 
   const {
-    title, siteName, description, imageUrl,
+    title, siteName, imageUrl,
   } = embedPageInfo;
+  const hostname = targetUrl.replace(/#.+|\?.+/g, '').replace(/\/$/, '');
 
   return optimizeHtmlString(`
     <p>
@@ -75,7 +76,7 @@ const pageEmbedTokenizer: RenderRule = (
         <span class="sitename">${siteName || ''}</span>
         <span class="icon"><span class="fas fa-link fa-fw"></span></span>
         <span class="title">${title || ''}</span>
-        ${`<span class="description">${description}</span>` || ''}
+        <span class="url">${hostname}</span>
       </a>
     </p>
   `);

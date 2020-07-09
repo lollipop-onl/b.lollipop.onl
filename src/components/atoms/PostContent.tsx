@@ -61,12 +61,13 @@ const PostContent = styled.div`
     & {
       display: grid;
       grid-template:
-        "thumbnail  sitename    icon"       auto
-        "thumbnail  title       title"       auto
-        "thumbnail  description description" auto
+        "thumbnail  sitename    icon"         auto
+        "thumbnail  title       title"        auto
+        "thumbnail  .           ."            1fr
+        "thumbnail  url         url"          auto
         /auto      1fr          auto;
       padding: 16px;
-      color: #252521;
+      color: #191919;
       text-decoration: none;
       border: 1px solid #ccc;
 
@@ -95,6 +96,7 @@ const PostContent = styled.div`
 
     & > .sitename {
       grid-area: sitename;
+      margin-bottom: 8px;
       font-size: 1.4rem;
       line-height: 1.5em;
       overflow: hidden;
@@ -119,17 +121,14 @@ const PostContent = styled.div`
       overflow: hidden;
     }
 
-    & > .description {
-      grid-area: description;
-      max-height: 3em;
-      margin-top: 16px;
+    & > .url {
+      grid-area: url;
+      margin-top: 8px;
+      color: #252521;
       font-size: 1.3rem;
-      line-height: 1.5em;
       overflow: hidden;
-
-      @media (max-width: 800px) {
-        margin-top: 8px;
-      }
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     &:hover {

@@ -16,6 +16,14 @@ const PostContent = styled.div`
     font-family: var(--monospace-font-family);
   }
 
+  p > code {
+    margin: 0 0.3em;
+    font-size: 0.9em;
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+
   .codeBlock {
     @media (max-width: 800px) {
       width: calc(100% + ${cssUnit(C.$containerMargin * 2)});

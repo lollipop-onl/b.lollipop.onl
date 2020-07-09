@@ -54,6 +54,10 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+JP:wght@300;700&family=Quicksand:wght@500;700&display=swap"
+          />
+          <link
+            rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.13.1/css/solid.css"
             integrity="sha384-wG7JbYjXVhle8f17qIp6KJaO/5PsPzOrT76RgvdRGLHj0yXZZ3jg98yb0GNRv1+M"
             crossOrigin="anonymous"

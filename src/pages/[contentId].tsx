@@ -43,7 +43,11 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   if (blogPost.thumbnailUrl) {
-    props.thumbnailImage = await fetchGyazoImageInfo(blogPost.thumbnailUrl);
+    const [thumbnailImage] = await fetchGyazoImageInfo(blogPost.thumbnailUrl);
+
+    if (thumbnailImage) {
+      props.thumbnailImage = thumbnailImage;
+    }
   }
 
   return { props };

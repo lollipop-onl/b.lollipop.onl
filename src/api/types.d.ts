@@ -87,3 +87,17 @@ export type GyazoOEmbed = {
   height: number;
   scale: number;
 };
+
+/** 埋め込みページ情報 */
+export type EmbedPageInfo = {
+  /** 対象URL */
+  url: string;
+  /** ページタイトル */
+  title: string;
+  /** サイト名 */
+  siteName?: string;
+  /** 説明 */
+  description?: string;
+  /** 画像URL */
+  imageUrl?: string;
+};

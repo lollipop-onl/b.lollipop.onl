@@ -24,12 +24,13 @@ export const getGyazoUrl = (url: string): string => {
   return url;
 };
 
-export const fetchGyazoImageInfo = async (url: string): Promise<GyazoOEmbed> => {
-  const gyazoUrl = url;
+export const fetchGyazoImageInfo = async (url: string | string[]): Promise<GyazoOEmbed[]> => {
+  const gyazoUrlList = Array.isArray(url) ? url : [url];
 
-  return ky.get('https://api.gyazo.com/api/oembed', {
-    searchParams: {
-      url: getGyazoUrl(gyazoUrl),
-    },
-  }).json();
+  return Promise
+    .all(gyazoUrlList.map((gyazoUrl) => ky.get('https://api.gyazo.com/api/oembed', {
+      searchParams: {
+        url: getGyazoUrl(gyazoUrl),
+      },
+    }).json<GyazoOEmbed>()));
 };

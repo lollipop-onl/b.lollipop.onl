@@ -181,7 +181,7 @@ const PostContent = styled.div`
 
     & > .icon {
       grid-area: icon;
-      margin-left: 8px;
+      margin: 0 0 8px 8px;
       font-size: 1.4rem;
       color: #666;
       line-height: 1.5em;

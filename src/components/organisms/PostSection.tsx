@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
 import { PostContent } from '~/components/atoms/PostContent';
-import { PostHeading } from '~/components/atoms/PostHeading';
+import { PostTitle } from '~/components/atoms/PostTitle';
 
-const StyledPostHeading = styled(PostHeading)`
+const StyledPostTitle = styled(PostTitle)`
   margin-bottom: 24px;
 `;
 
@@ -23,20 +23,22 @@ type Props = {
 
 export const PostSectionContent: FC<Props> = ({ post, thumbnailImage, contentHtml }) => (
   <>
-    <section>
-      <StyledPostHeading>{post.title}</StyledPostHeading>
-      { thumbnailImage ? (
-        <StyledPostThumbnail>
-          <amp-img
-            src={thumbnailImage.url}
-            width={thumbnailImage.width}
-            height={thumbnailImage.height}
-            layout="responsive"
-          />
-        </StyledPostThumbnail>
-      ) : null }
-      <PostContent html={contentHtml} />
-    </section>
+    <div>
+      <StyledPostTitle>{post.title}</StyledPostTitle>
+      <section>
+        { thumbnailImage ? (
+          <StyledPostThumbnail>
+            <amp-img
+              src={thumbnailImage.url}
+              width={thumbnailImage.width}
+              height={thumbnailImage.height}
+              layout="responsive"
+            />
+          </StyledPostThumbnail>
+        ) : null }
+        <PostContent html={contentHtml} />
+      </section>
+    </div>
   </>
 );
 

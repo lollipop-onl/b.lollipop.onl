@@ -1,11 +1,60 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as C from '~/const';
 import { cssUnit } from '~/utils';
+
+const postContentHeadingMixin = (content: string) => css`
+  display: flex;
+  align-items: flex-start;
+  margin: 1.4em 0 0.8em;
+  font-weight: bold;
+
+  &::before {
+    display: block;
+    content: "${content}";
+    padding: 0.2em 0;
+    margin-right: 0.4em;
+    font-size: 0.8em;
+    font-family: var(--accent-font-family);
+  }
+
+  > a {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 1.6rem;
+    color: #555;
+    text-decoration: none;
+  }
+
+  > a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+`;
 
 const PostContent = styled.div`
   line-height: 1.8;
   word-break: break-all;
+
+  h1 {
+    ${postContentHeadingMixin('#')};
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    ${postContentHeadingMixin('##')};
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    ${postContentHeadingMixin('###')};
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    ${postContentHeadingMixin('####')};
+    font-size: 1.4rem;
+  }
 
   p, pre {
     margin-bottom: 16px;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-const PostHeading = styled.h1`
+const PostTitle = styled.h1`
   position: relative;
   padding: 16px 16px 16px 32px;
   line-height: 1.8;
@@ -28,11 +28,11 @@ type Props = {
   className?: string;
 };
 
-const PostHeadingComponent: FC<Props> = ({ children, className }) => (
-  <PostHeading
+const PostTitleComponent: FC<Props> = ({ children, className }) => (
+  <PostTitle
     className={className}
   >{children}
-  </PostHeading>
+  </PostTitle>
 );
 
-export { PostHeadingComponent as PostHeading };
+export { PostTitleComponent as PostTitle };

@@ -61,12 +61,15 @@ const LayoutComponent: FC<Props> = ({
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:site_name" content="b.lollipop.onl" />
         <meta property="og:image" content={ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="lollipop_onl" />
       </Head>
       <Header />
       <Container>

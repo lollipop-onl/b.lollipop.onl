@@ -73,6 +73,16 @@ const PostContent = styled.div`
     border-radius: 4px;
   }
 
+  a {
+    padding: 0 0.2em;
+    color: #252521;
+  }
+
+  a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
   ul, ol {
     margin: 0 0 16px 32px;
 

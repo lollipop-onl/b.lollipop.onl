@@ -159,8 +159,8 @@ const PostContent = styled.div`
       margin-right: 16px;
 
       @media (max-width: 800px) {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         margin-right: 8px;
       }
     }

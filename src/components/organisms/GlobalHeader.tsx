@@ -30,12 +30,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 80px;
+
+  @media (max-width: 800px) {
+    height: 64px;
+  }
 `;
 
 const LogoLink = styled.a`
   ${logoMixin};
   color: var(--primary-text-color);
   text-decoration: none;
+
+  @media (max-width: 800px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export { GlobalHeaderComponent as GlobalHeader };

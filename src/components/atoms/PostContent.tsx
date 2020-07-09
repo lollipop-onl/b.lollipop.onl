@@ -57,7 +57,7 @@ const PostContent = styled.div`
   }
 
   p, pre {
-    margin-bottom: 16px;
+    margin-bottom: 1em;
   }
 
   code {

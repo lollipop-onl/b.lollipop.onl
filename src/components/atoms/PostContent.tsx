@@ -57,6 +57,81 @@ const PostContent = styled.div`
     }
   }
 
+  .embedPage {
+    & {
+      display: grid;
+      grid-template:
+        "thumbnail  sitename"    auto
+        "thumbnail  title"       auto
+        "thumbnail  description" auto
+        /auto      1fr;
+      padding: 16px;
+      color: #252521;
+      text-decoration: none;
+      border: 1px solid #ccc;
+
+      @media (max-width: 800px) {
+        padding: 8px;
+      }
+    }
+
+    & > .thumbnail {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      grid-area: thumbnail;
+      margin-right: 16px;
+
+      @media (max-width: 800px) {
+        width: 60px;
+        height: 60px;
+        margin-right: 8px;
+      }
+    }
+
+    & > .thumbnail > .image > img {
+      object-fit: cover;
+    }
+
+    & > .sitename {
+      grid-area: sitename;
+      max-height: 1.5em;
+      font-size: 1.4rem;
+      line-height: 1.5em;
+      overflow: hidden;
+    }
+
+    & > .title {
+      grid-area: title;
+      max-height: 3em;
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1.5em;
+      overflow: hidden;
+    }
+
+    & > .description {
+      grid-area: description;
+      max-height: 3em;
+      margin-top: 16px;
+      font-size: 1.3rem;
+      line-height: 1.5em;
+      overflow: hidden;
+
+      @media (max-width: 800px) {
+        margin-top: 8px;
+      }
+    }
+
+    &:hover {
+      border-color: var(--primary-color);
+    }
+
+    &:hover > .title {
+      text-decoration: underline;
+    }
+  }
+
   amp-img {
     max-width: 100%;
   }

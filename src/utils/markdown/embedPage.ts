@@ -2,7 +2,7 @@ import { PluginSimple } from 'markdown-it/lib';
 import ParserBlock from 'markdown-it/lib/parser_block';
 import { RenderRule } from 'markdown-it/lib/renderer';
 import { EmbedPageInfo } from '~/api/types';
-import {optimizeHtmlString} from "~/utils";
+import { optimizeHtmlString } from '~/utils';
 
 const pickEmbedPageUrl = (content: string): string[] => content
   .split('\n')
@@ -55,11 +55,27 @@ const pageEmbedTokenizer: RenderRule = (
 
   return optimizeHtmlString(`
     <p>
-      <a href="${targetUrl}">${title} / ${siteName}</a>
-      <br>
-      ${description}
-      <br>
-      <amp-img src="${imageUrl}" width="200" height="200" />
+      <a
+        class="embedPage"
+        href="${targetUrl}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="thumbnail">
+          ${!imageUrl ? '' : `
+            <amp-img
+              class="image"
+              src="${imageUrl}"
+              width="100"
+              height="100"
+              layout="fill"
+            />
+          `}
+        </span>
+        <span class="sitename">${siteName || ''}</span>
+        <span class="title">${title || ''}</span>
+        ${`<span class="description">${description}</span>` || ''}
+      </a>
     </p>
   `);
 };

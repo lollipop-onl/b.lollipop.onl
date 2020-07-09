@@ -73,6 +73,7 @@ const pageEmbedTokenizer: RenderRule = (
           `}
         </span>
         <span class="sitename">${siteName || ''}</span>
+        <span class="icon"><span class="fas fa-link fa-fw"></span></span>
         <span class="title">${title || ''}</span>
         ${`<span class="description">${description}</span>` || ''}
       </a>

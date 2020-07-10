@@ -25,13 +25,17 @@ const DIST_DIR = path.join(__dirname, '../../dist');
     .filter((info): info is NonNullable<typeof info> => !!info);
   const templateImage = await canvas.loadImage(path.join(__dirname, 'template.png'));
 
+  canvas.registerFont(path.join(__dirname, 'togalite.otf'), {
+    family: 'togalite',
+  });
+
   pageInfo.forEach(({ title, filePath }) => {
     const cvs = canvas.createCanvas(960, 540);
     const ctx = cvs.getContext('2d');
 
     ctx.drawImage(templateImage, 0, 0, 960, 540);
 
-    ctx.font = '60px Impact';
+    ctx.font = '50px togalite';
 
     let currentLine = 0;
     const lines: string[] = [];
@@ -40,7 +44,7 @@ const DIST_DIR = path.join(__dirname, '../../dist');
       const line = lines[currentLine];
       const m = ctx.measureText(line + char);
 
-      if (m.width > 960 * 0.8) {
+      if (m.width > 960 * 0.9) {
         currentLine += 1;
         lines[currentLine] = char;
       } else {

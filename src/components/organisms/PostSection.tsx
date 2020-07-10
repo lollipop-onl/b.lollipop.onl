@@ -7,7 +7,7 @@ import * as C from '~/const';
 import { dateFormat, url } from '~/utils';
 
 const StyledPostTitle = styled(PostTitle)`
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 `;
 
 const StyledPostCategory = styled.a`
@@ -37,7 +37,7 @@ const StyledPostDate = styled.dl`
   font-size: 1.4rem;
 
   @media (max-width: 800px) {
-  margin: 16px 0 0;
+    margin: 16px 0 0;
   }
 
   > .label {
@@ -51,6 +51,7 @@ const StyledPostDate = styled.dl`
 
 const StyledPostHeader = styled.div`
   display: flex;
+  margin-bottom: 24px;
 
   @media (max-width: 800px) {
     flex-direction: column;
@@ -71,7 +72,7 @@ type Props = {
 };
 
 export const PostSectionContent: FC<Props> = ({ post, thumbnailImage, contentHtml }) => {
-  const isModified = post.publishedAt !== post.updatedAt ? post.updatedAt : post.publishedAt;
+  const isModified = post.publishedAt !== post.updatedAt;
 
   return (
     <>
@@ -86,20 +87,13 @@ export const PostSectionContent: FC<Props> = ({ post, thumbnailImage, contentHtm
             <dt className="label">{isModified ? '更新日時' : '作成日時'}：</dt>
             <dd className="date">
               {isModified ? (
-                <time dateTime={post.updatedAt}>{dateFormat(post.updatedAt, 'LLLL')}</time>
+                <time dateTime={post.updatedAt}>{dateFormat(post.updatedAt, 'll')}</time>
               ) : (
                 <time dateTime={post.publishedAt}>{dateFormat(post.publishedAt, 'll')}</time>
               )}
             </dd>
           </StyledPostDate>
         </StyledPostHeader>
-        <ol>
-          {post.tags.map((tag) => (
-            <li key={tag.id}>
-              <a href={url(C.PAGES.BLOG_TAG, { tagId: tag.id, page: 1 })}>{tag.name}</a>
-            </li>
-          ))}
-        </ol>
         <section>
           { thumbnailImage ? (
             <StyledPostThumbnail>

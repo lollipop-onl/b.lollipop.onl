@@ -68,7 +68,7 @@ export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }
     description={post.content}
     ogType="article"
     ogImage={post.thumbnailUrl}
-    sidebar={<PostSidebar content={post.content} />}
+    sidebar={<PostSidebar content={post.content} tags={post.tags} />}
   >
     <PostSection
       post={post}

@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { PostSidebarToC } from '~/components/organisms/PostSidebarToC';
+import { PostTag } from '~/components/atoms/PostTag';
+import { Tag } from '~/api/types';
 
 const PostSidebarAdsense = styled.div`
   width: 100%;
@@ -23,17 +25,47 @@ const PostSidebarSticky = styled.div`
   overflow-y: auto;
 `;
 
+const PostSidebarTags = styled.div`
+  margin-bottom: 32px;
+
+  > .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  > .tags > .tag {
+    margin-bottom: 8px;
+  }
+
+  > .tags > .tag:not(:last-child) {
+    margin-right: 8px;
+  }
+`;
+
 type Props = {
   /** コンテンツMarkdown */
   content: string;
+  /** タグ */
+  tags: Tag[];
 };
 
-const PostSidebarComponent: FC<Props> = ({ content }) => {
+const PostSidebarComponent: FC<Props> = ({ content, tags }) => {
   const headings = content.split('\n').filter((line) => line.startsWith('#'));
 
   return (
     <>
       <PostSidebarAdsense />
+      <PostSidebarTags>
+        <ol className="tags">
+          {tags.map((tag) => (
+            <li
+              key={tag.id}
+              className="tag"
+            ><PostTag tag={tag} />
+            </li>
+          ))}
+        </ol>
+      </PostSidebarTags>
       <PostSidebarSticky>
         { headings.length > 0 ? <PostSidebarToC headings={headings} /> : null }
       </PostSidebarSticky>

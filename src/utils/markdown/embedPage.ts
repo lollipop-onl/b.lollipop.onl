@@ -2,7 +2,7 @@ import { PluginSimple } from 'markdown-it/lib';
 import ParserBlock from 'markdown-it/lib/parser_block';
 import { RenderRule } from 'markdown-it/lib/renderer';
 import { EmbedPageInfo } from '~/api/types';
-import { optimizeHtmlString } from '~/utils';
+import { optimizeHtmlString } from '~/utils/optimizeHtmlString';
 
 const pickEmbedPageUrl = (content: string): string[] => content
   .split('\n')

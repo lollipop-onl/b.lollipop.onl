@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { PostSidebarToC } from '~/components/organisms/PostSidebarToC';
 import { PostTag } from '~/components/atoms/PostTag';
 import { SocialShare } from '~/components/molecules/SocialShare';
-import { Tag } from '~/api/types';
+import * as C from '~/const';
+import { BlogPost } from '~/api/types';
+import { url } from '~/utils';
 
 const PostSidebarAdsense = styled.div`
   width: 100%;
@@ -48,13 +50,12 @@ const PostSidebarTags = styled.div`
 `;
 
 type Props = {
-  /** コンテンツMarkdown */
-  content: string;
-  /** タグ */
-  tags: Tag[];
+  /** ポストコンテンツ */
+  post: BlogPost;
 };
 
-const PostSidebarComponent: FC<Props> = ({ content, tags }) => {
+const PostSidebarComponent: FC<Props> = ({ post }) => {
+  const { content, tags } = post;
   const headings = content.split('\n').filter((line) => line.startsWith('#'));
 
   return (

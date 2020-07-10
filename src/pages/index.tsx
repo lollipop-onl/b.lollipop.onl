@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 export const IndexPage: FC<Props> = ({ posts = [] }) => (
-  <Layout title="b.lollipop.onl">
+  <Layout title="トップページ">
     <ol>
       {posts.map((post) => (
         <li key={post.id}>

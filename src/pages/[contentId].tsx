@@ -5,10 +5,11 @@ import { Layout } from '~/components/templates/Layout';
 import { PostSection } from '~/components/organisms/PostSection';
 import { PostSidebar } from '~/components/organisms/PostSidebar';
 import * as C from '~/const';
-import { fetchAllPostList, fetchPostContent } from '~/api';
+import {
+  fetchAllPostList, fetchPostContent, fetchGyazoImageInfo,
+} from '~/api';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
-import { url, markdown } from '~/utils';
-import { fetchGyazoImageInfo } from '~/api/gyazo';
+import { url, markdown, param } from '~/utils';
 
 type Props = {
   /** ブログポスト */
@@ -26,7 +27,7 @@ type Props = {
 export const config = { amp: true };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const contentId = Array.isArray(params?.contentId) ? params?.contentId[0] : params?.contentId;
+  const contentId = param(params, 'contentId');
   const blogPost = await fetchPostContent(contentId || '');
   const allBlogContentList = await fetchAllPostList({ fields: 'id,title' });
   const currentPostIndex = allBlogContentList.findIndex((content) => content.id === contentId);
@@ -57,10 +58,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const allBlogContentList = await fetchAllPostList({ fields: 'id' });
 
-  return ({
+  return {
     paths: allBlogContentList.map(({ id }) => url(C.PAGES.BLOG_POST, { contentId: id })),
     fallback: false,
-  });
+  };
 };
 
 export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }) => (

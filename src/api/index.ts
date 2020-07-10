@@ -44,3 +44,6 @@ export const fetchPostContent = async (
   url('/api/v1/posts/:contentId', { contentId }),
   query,
 );
+
+export * from './embedPage';
+export * from './gyazo';

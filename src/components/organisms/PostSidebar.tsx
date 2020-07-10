@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { PostSidebarToC } from '~/components/organisms/PostSidebarToC';
 import { PostTag } from '~/components/atoms/PostTag';
 import { SocialShare } from '~/components/molecules/SocialShare';
-import * as C from '~/const';
 import { BlogPost } from '~/api/types';
-import { url } from '~/utils';
 
 const PostSidebarAdsense = styled.div`
   width: 100%;

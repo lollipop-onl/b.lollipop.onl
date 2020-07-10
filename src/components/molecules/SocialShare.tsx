@@ -9,6 +9,10 @@ const SocialShare = styled.div`
     flex: 1 0;
     background-size: 36px;
   }
+
+  > amp-social-share[type=hatena_bookmark] {
+    background: #01a5de url(/images/logos/hatenabookmark.svg) center center no-repeat;
+  }
 `;
 
 type Props = {

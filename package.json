@@ -65,7 +65,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o dist",
+    "build": "next build && next export -o dist && ogp",
     "lint:js": "eslint --ext ts,tsx .",
     "lint:css": "stylelint \"src/**/*.{css,ts,tsx}\"",
     "ogp": "ts-node --project scripts/generate-ogp/tsconfig.json scripts/generate-ogp"

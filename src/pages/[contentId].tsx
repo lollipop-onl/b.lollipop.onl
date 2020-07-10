@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import urlJoin from 'url-join';
 import { Layout } from '~/components/templates/Layout';
 import { PostSection } from '~/components/organisms/PostSection';
 import { PostSidebar } from '~/components/organisms/PostSidebar';
@@ -67,7 +68,7 @@ export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }
     title={post.title}
     description={post.content}
     ogType="article"
-    ogImage={post.thumbnailUrl}
+    ogImage={post.thumbnailUrl || urlJoin('https://b.lollipop.onl', url(C.PAGES.BLOG_POST, { contentId: post.id }), 'ogp.png')}
     sidebar={<PostSidebar content={post.content} tags={post.tags} />}
   >
     <PostSection

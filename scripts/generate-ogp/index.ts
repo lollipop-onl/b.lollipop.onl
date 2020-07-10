@@ -52,12 +52,12 @@ const DIST_DIR = path.join(__dirname, '../../dist');
       }
     });
 
-    const baseY = 40 + ((540 - 20) / 2) - ((lines.length * 60 + 24) / 2);
+    const baseY = 40 + ((540 - 20) / 2) - ((lines.length * 60 + 32) / 2);
 
     lines.forEach((line, i) => {
       const m = ctx.measureText(line);
 
-      ctx.fillText(line, (960 - m.width) / 2, baseY + (m.emHeightAscent + 24) * i);
+      ctx.fillText(line, (960 - m.width) / 2, baseY + (m.emHeightAscent + 32) * i);
     });
 
     const buf = cvs.toBuffer();

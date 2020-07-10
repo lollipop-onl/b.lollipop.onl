@@ -70,7 +70,7 @@ export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }
     description={post.content}
     ogType="article"
     ogImage={post.thumbnailUrl || urlJoin('https://b.lollipop.onl', url(C.PAGES.BLOG_POST, { contentId: post.id }), 'ogp.png')}
-    sidebar={<PostSidebar content={post.content} tags={post.tags} />}
+    sidebar={<PostSidebar id={post.id} content={post.content} tags={post.tags} />}
   >
     <PostSection
       post={post}

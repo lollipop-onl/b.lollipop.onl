@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { PostSidebarToC } from '~/components/organisms/PostSidebarToC';
 import { PostTag } from '~/components/atoms/PostTag';
+import { SocialShare } from '~/components/molecules/SocialShare';
 import { Tag } from '~/api/types';
 
 const PostSidebarAdsense = styled.div`
@@ -25,6 +26,10 @@ const PostSidebarSticky = styled.div`
   overflow-y: auto;
 `;
 
+const StyledSocialShare = styled(SocialShare)`
+  margin-bottom: 32px;
+`;
+
 const PostSidebarTags = styled.div`
   margin-bottom: 32px;
 
@@ -43,6 +48,10 @@ const PostSidebarTags = styled.div`
 `;
 
 type Props = {
+  /** コンテンツID */
+  id: string;
+  /** コンテンツタイトル */
+  title: string;
   /** コンテンツMarkdown */
   content: string;
   /** タグ */
@@ -55,6 +64,7 @@ const PostSidebarComponent: FC<Props> = ({ content, tags }) => {
   return (
     <>
       <PostSidebarAdsense />
+      <StyledSocialShare />
       <PostSidebarTags>
         <ol className="tags">
           {tags.map((tag) => (

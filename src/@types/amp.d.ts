@@ -15,6 +15,12 @@ declare namespace JSX {
     height?: string | number;
   };
 
+  /** @see https://amp.dev/ja/documentation/components/amp-social-share */
+  type AmpSocialShare = CommonAttributes & {
+    type: string;
+    [key: string]: string | number | undefined;
+  };
+
   /** @see https://amp.dev/documentation/components/amp-script */
   type AmpScript = CommonAttributes & {
     src?: string;
@@ -52,6 +58,7 @@ declare namespace JSX {
 
   interface IntrinsicElements {
     'amp-img': AmpImg;
+    'amp-social-share': AmpSocialShare;
     'amp-script': AmpScript;
     'amp-twitter': AmpTwitter;
     'amp-youtube': AmpYoutube;

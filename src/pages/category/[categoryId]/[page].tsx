@@ -81,6 +81,6 @@ const CategoryPage: FC<Props> = ({ category, posts, totalPostCount }) => {
       </ol>
     </Layout>
   );
-}
+};
 
 export default CategoryPage;

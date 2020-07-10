@@ -11,6 +11,7 @@ const postContentHeadingMixin = (content: string) => css`
 
   &::before {
     display: block;
+    flex-shrink: 0;
     content: "${content}";
     padding: 0.2em 0;
     margin-right: 0.4em;

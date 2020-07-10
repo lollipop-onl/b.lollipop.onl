@@ -48,10 +48,6 @@ const PostSidebarTags = styled.div`
 `;
 
 type Props = {
-  /** コンテンツID */
-  id: string;
-  /** コンテンツタイトル */
-  title: string;
   /** コンテンツMarkdown */
   content: string;
   /** タグ */

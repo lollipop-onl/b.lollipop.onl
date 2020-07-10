@@ -42,7 +42,7 @@ const DIST_DIR = path.join(__dirname, '../../dist');
 
     title.split('').forEach((char) => {
       const line = lines[currentLine];
-      const m = ctx.measureText(line + char);
+      const m = ctx.measureText((line || '') + char);
 
       if (m.width > 960 * 0.9) {
         currentLine += 1;

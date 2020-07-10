@@ -64,17 +64,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const TagPage: FC<Props> = ({ tag, posts, totalPostCount }) => (
-  <Layout>
-    <h1>Tag: {tag.name} - {totalPostCount} posts</h1>
-    <ol>
-      {posts.map((post) => (
-        <li key={post.id}>
-          <a href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>{post.title}</a>
-        </li>
-      ))}
-    </ol>
-  </Layout>
-);
+const TagPage: FC<Props> = ({ tag, posts, totalPostCount }) => {
+  const { query } = useRouter();
+  const page = param(query, 'page');
+  const title = `タグ：${tag.name}${page === '1' ? '' : ` - ${page}ページ`}`;
+
+  return (
+    <Layout title={title}>
+      <h1>Tag: {tag.name} - {totalPostCount} posts</h1>
+      <ol>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <a href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>{post.title}</a>
+          </li>
+        ))}
+      </ol>
+    </Layout>
+  );
+};
 
 export default TagPage;

@@ -64,17 +64,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const CategoryPage: FC<Props> = ({ category, posts, totalPostCount }) => (
-  <Layout>
-    <h1>Category: {category.name} - {totalPostCount} posts</h1>
-    <ol>
-      {posts.map((post) => (
-        <li key={post.id}>
-          <a href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>{post.title}</a>
-        </li>
-      ))}
-    </ol>
-  </Layout>
-);
+const CategoryPage: FC<Props> = ({ category, posts, totalPostCount }) => {
+  const { query } = useRouter();
+  const page = param(query, 'page');
+  const title = `カテゴリ：${category.name}${page === '1' ? '' : ` - ${page}ページ`}`;
+
+  return (
+    <Layout title={title}>
+      <h1>Category: {category.name} - {totalPostCount} posts</h1>
+      <ol>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <a href={url(C.PAGES.BLOG_POST, { contentId: post.id })}>{post.title}</a>
+          </li>
+        ))}
+      </ol>
+    </Layout>
+  );
+}
 
 export default CategoryPage;

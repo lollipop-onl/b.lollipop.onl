@@ -1,14 +1,19 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { Layout } from '~/components/templates/Layout';
 import * as C from '~/const';
-import { fetchAllPostList, fetchPostList } from '~/api';
-import { BlogPost } from '~/api/types';
+import { fetchAllPostList, fetchPostList, fetchPostTag } from '~/api';
+import { BlogPost, Tag } from '~/api/types';
 import { getPaginationPaths, param, url } from '~/utils';
 
 type Props = {
+  /** タグ */
+  tag: Tag;
   /** ブログポストのリスト */
   posts: BlogPost[];
+  /** すべてのポスト数 */
+  totalPostCount: number;
 };
 
 export const config = { amp: true };
@@ -17,15 +22,28 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const tagId = param(params, 'tagId');
   const page = Number(param(params, 'page')) - 1;
 
-  const { contents } = await fetchPostList({
-    offset: C.POST_PER_PAGE * page,
-    limit: C.POST_PER_PAGE,
-    filters: `tags[contains]${tagId}`,
-  });
+  const [
+    { contents },
+    tag,
+    allPostList,
+  ] = await Promise.all([
+    fetchPostList({
+      offset: C.POST_PER_PAGE * page,
+      limit: C.POST_PER_PAGE,
+      filters: `tags[contains]${tagId}`,
+    }),
+    fetchPostTag(tagId || ''),
+    fetchAllPostList({
+      fields: 'id',
+      filters: `tags[contains]${tagId}`,
+    }),
+  ]);
 
   return {
     props: {
       posts: contents,
+      tag,
+      totalPostCount: allPostList.length,
     },
   };
 };
@@ -46,9 +64,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const TagPage: FC<Props> = ({ posts }) => (
+const TagPage: FC<Props> = ({ tag, posts, totalPostCount }) => (
   <Layout>
-    <h1>Tag</h1>
+    <h1>Tag: {tag.name} - {totalPostCount} posts</h1>
     <ol>
       {posts.map((post) => (
         <li key={post.id}>

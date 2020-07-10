@@ -1,14 +1,19 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { Layout } from '~/components/templates/Layout';
 import * as C from '~/const';
-import { fetchAllPostList, fetchPostList } from '~/api';
-import { BlogPost } from '~/api/types';
+import { fetchAllPostList, fetchPostCategory, fetchPostList } from '~/api';
+import { BlogPost, Category } from '~/api/types';
 import { getPaginationPaths, param, url } from '~/utils';
 
 type Props = {
+  /** ブログカテゴリ */
+  category: Category;
   /** ブログポストのリスト */
   posts: BlogPost[];
+  /** すべてのポスト数 */
+  totalPostCount: number;
 };
 
 export const config = { amp: true };
@@ -17,15 +22,28 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const categoryId = param(params, 'categoryId');
   const page = Number(param(params, 'page')) - 1;
 
-  const { contents } = await fetchPostList({
-    offset: C.POST_PER_PAGE * page,
-    limit: C.POST_PER_PAGE,
-    filters: `category[equals]${categoryId}`,
-  });
+  const [
+    { contents },
+    category,
+    allPostList,
+  ] = await Promise.all([
+    fetchPostList({
+      offset: C.POST_PER_PAGE * page,
+      limit: C.POST_PER_PAGE,
+      filters: `category[equals]${categoryId}`,
+    }),
+    fetchPostCategory(categoryId || ''),
+    fetchAllPostList({
+      fields: 'id',
+      filters: `category[equals]${categoryId}`,
+    }),
+  ]);
 
   return {
     props: {
       posts: contents,
+      category,
+      totalPostCount: allPostList.length,
     },
   };
 };
@@ -46,8 +64,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const CategoryPage: FC<Props> = ({ posts }) => (
+const CategoryPage: FC<Props> = ({ category, posts, totalPostCount }) => (
   <Layout>
+    <h1>Category: {category.name} - {totalPostCount} posts</h1>
     <ol>
       {posts.map((post) => (
         <li key={post.id}>

@@ -1,6 +1,6 @@
 import { fetchMicroCMSData } from './microCMS';
 import {
-  FetchListQuery, BlogPostList, FetchContentQuery, BlogPost,
+  FetchListQuery, BlogPostList, FetchContentQuery, BlogPost, Tag, Category,
 } from './types';
 import { url } from '~/utils';
 
@@ -43,6 +43,24 @@ export const fetchPostContent = async (
 ): Promise<BlogPost> => fetchMicroCMSData<BlogPost>(
   url('/api/v1/posts/:contentId', { contentId }),
   query,
+);
+
+/**
+ * ブログカテゴリを取得する
+ * @param contentId コンテンツID
+ */
+export const fetchPostCategory = async (
+  contentId: string,
+): Promise<Category> => fetchMicroCMSData<Category>(
+  url('/api/v1/categories/:contentId', { contentId }),
+);
+
+/**
+ * ブログタグを取得する
+ * @param contentId コンテンツID
+ */
+export const fetchPostTag = async (contentId: string): Promise<Tag> => fetchMicroCMSData<Tag>(
+  url('/api/v1/tags/:contentId', { contentId }),
 );
 
 export * from './embedPage';

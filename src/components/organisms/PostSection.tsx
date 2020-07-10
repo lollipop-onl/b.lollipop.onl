@@ -79,12 +79,14 @@ export const PostSectionContent: FC<Props> = ({ post, thumbnailImage, contentHtm
       <div>
         <StyledPostTitle>{post.title}</StyledPostTitle>
         <StyledPostHeader>
-          <StyledPostCategory href={url(C.PAGES.BLOG_CATEGORY, { categoryId: post.category.id, page: 1 })}>
+          <StyledPostCategory
+            href={url(C.PAGES.BLOG_CATEGORY, { categoryId: post.category.id, page: 1 })}
+          >
             <span className="icon fas fa-folder-open" />
             <span className="text">{post.category.name}</span>
           </StyledPostCategory>
           <StyledPostDate>
-            <dt className="label">{isModified ? '更新日時' : '作成日時'}：</dt>
+            <dt className="label">{isModified ? '更新日' : '作成日'}：</dt>
             <dd className="date">
               {isModified ? (
                 <time dateTime={post.updatedAt}>{dateFormat(post.updatedAt, 'll')}</time>

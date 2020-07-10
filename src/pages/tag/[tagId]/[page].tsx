@@ -14,13 +14,13 @@ type Props = {
 export const config = { amp: true };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const categoryId = param(params, 'categoryId');
+  const tagId = param(params, 'tagId');
   const page = Number(param(params, 'page')) - 1;
 
   const { contents } = await fetchPostList({
     offset: C.POST_PER_PAGE * page,
     limit: C.POST_PER_PAGE,
-    filters: `category[equals]${categoryId}`,
+    filters: `tags[contains]${tagId}`,
   });
 
   return {
@@ -31,23 +31,24 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allBlogContentList = await fetchAllPostList({ fields: 'category.id' });
-  const categoryPostCount = allBlogContentList.reduce<Record<string, number>>((count, post) => {
-    const { id } = post.category;
-
-    count[id] = (count[id] || 0) + 1;
+  const allBlogContentList = await fetchAllPostList({ fields: 'tags.id' });
+  const tagPostCount = allBlogContentList.reduce<Record<string, number>>((count, post) => {
+    post.tags.forEach(({ id }) => {
+      count[id] = (count[id] || 0) + 1;
+    });
 
     return count;
   }, {});
 
   return {
-    paths: getPaginationPaths(categoryPostCount, C.PAGES.BLOG_CATEGORY, 'categoryId'),
+    paths: getPaginationPaths(tagPostCount, C.PAGES.BLOG_TAG, 'tagId'),
     fallback: false,
   };
 };
 
-const CategoryPage: FC<Props> = ({ posts }) => (
+const TagPage: FC<Props> = ({ posts }) => (
   <Layout>
+    <h1>Tag</h1>
     <ol>
       {posts.map((post) => (
         <li key={post.id}>
@@ -58,4 +59,4 @@ const CategoryPage: FC<Props> = ({ posts }) => (
   </Layout>
 );
 
-export default CategoryPage;
+export default TagPage;

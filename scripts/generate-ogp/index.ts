@@ -48,7 +48,7 @@ const DIST_DIR = path.join(__dirname, '../../dist');
       const line = lines[currentLine];
       const m = ctx.measureText(line + char);
 
-      if (m.width > 960 * 0.9) {
+      if (m.width > 960 * 0.75) {
         currentLine += 1;
         lines[currentLine] = char;
       } else {

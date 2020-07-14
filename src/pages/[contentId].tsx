@@ -10,6 +10,7 @@ import {
 } from '~/api';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
 import { url, markdown, param } from '~/utils';
+import { fetchAmpUrl } from '~/api/google';
 
 type Props = {
   /** ブログポスト */
@@ -22,6 +23,8 @@ type Props = {
   nextBlogPost?: BlogPost;
   /** アイキャッチ画像情報 */
   thumbnailImage?: GyazoOEmbed;
+  /** AMPにキャッシュされたURL */
+  ampUrl?: string;
 };
 
 export const config = { amp: true };
@@ -52,6 +55,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
+  const ampUrl = await fetchAmpUrl(url(C.PAGES.BLOG_POST, { contentId }));
+
+  if (ampUrl) {
+    props.ampUrl = ampUrl;
+  }
+
   return { props };
 };
 
@@ -64,13 +73,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const PostContentPage: FC<Props> = ({ post, contentHtml, thumbnailImage }) => (
+export const PostContentPage: FC<Props> = ({
+  post,
+  contentHtml,
+  thumbnailImage,
+  ampUrl,
+}) => (
   <Layout
     title={post.title}
     description={post.content}
     ogType="article"
     ogImage={post.thumbnailUrl || urlJoin('https://b.lollipop.onl', url(C.PAGES.BLOG_POST, { contentId: post.id }), 'ogp.png')}
-    sidebar={<PostSidebar post={post} />}
+    sidebar={<PostSidebar post={post} ampUrl={ampUrl} />}
   >
     <PostSection
       post={post}

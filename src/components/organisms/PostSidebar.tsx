@@ -50,16 +50,18 @@ const PostSidebarTags = styled.div`
 type Props = {
   /** ポストコンテンツ */
   post: BlogPost;
+  /** AMPにキャッシュされたURL */
+  ampUrl?: string;
 };
 
-const PostSidebarComponent: FC<Props> = ({ post }) => {
+const PostSidebarComponent: FC<Props> = ({ post, ampUrl }) => {
   const { content, tags } = post;
   const headings = content.split('\n').filter((line) => line.startsWith('#'));
 
   return (
     <>
       <PostSidebarAdsense />
-      <StyledSocialShare />
+      <StyledSocialShare url={ampUrl} />
       <PostSidebarTags>
         <ol className="tags">
           {tags.map((tag) => (

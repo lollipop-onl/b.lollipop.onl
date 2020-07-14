@@ -3,10 +3,12 @@ import styled from 'styled-components';
 
 const SocialShare = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 
   > amp-social-share {
     flex: 1 0;
+    min-width: 25%;
     background-size: 36px;
   }
 

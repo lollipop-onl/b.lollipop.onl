@@ -20,8 +20,7 @@ export const fetchAmpUrl = async (path: string): Promise<string | undefined> => 
     return;
   }
 
-  const response = await ky.get('https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet', {
-    method: 'post',
+  const response = await ky.post('https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet', {
     headers: {
       'X-Goog-Api-Key': process.env.GOOGLE_API_KEY,
     },

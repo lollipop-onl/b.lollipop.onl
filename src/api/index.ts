@@ -64,4 +64,5 @@ export const fetchPostTag = async (contentId: string): Promise<Tag> => fetchMicr
 );
 
 export * from './embedPage';
+export * from './google';
 export * from './gyazo';

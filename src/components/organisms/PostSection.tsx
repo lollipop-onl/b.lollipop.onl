@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import urlJoin from 'url-join';
 import { BlogPost, GyazoOEmbed } from '~/api/types';
 import { PostContent } from '~/components/atoms/PostContent';
 import { PostTitle } from '~/components/atoms/PostTitle';
@@ -109,6 +110,7 @@ export const PostSectionContent: FC<Props> = ({ post, thumbnailImage, contentHtm
           ) : null }
           <PostContent html={contentHtml} />
         </section>
+        <a href={urlJoin('https://lollipop.microcms.io/apis/posts/', post.id)}>編集</a>
       </div>
     </>
   );

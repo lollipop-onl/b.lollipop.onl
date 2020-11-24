@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
-    "highlight.js": "^10.1.1",
+    "highlight.js": "^10.1.2",
     "jimp": "^0.14.0",
     "jsdom": "^16.2.2",
     "ky": "^0.20.0",

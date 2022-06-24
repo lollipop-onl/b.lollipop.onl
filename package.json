@@ -49,7 +49,7 @@
     "@zeit/next-sass": "^1.0.1",
     "highlight.js": "^10.1.1",
     "jimp": "^0.14.0",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.5.0",
     "ky": "^0.20.0",
     "ky-universal": "^0.8.1",
     "markdown-it": "^11.0.0",
